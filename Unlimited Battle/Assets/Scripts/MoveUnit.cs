@@ -39,6 +39,9 @@ public class MoveUnit : MonoBehaviour
             // Движение юнита к цели
             transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
 
+            Vector3 direction = targetPosition - transform.position;
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), 5f * Time.deltaTime);
+
             // Проверка достижения цели
             if (Vector3.Distance(transform.position, targetPosition) < 0.1f)
             {
