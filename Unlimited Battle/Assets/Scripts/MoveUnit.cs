@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -9,52 +7,58 @@ public class MoveUnit : MonoBehaviour
     private NavMeshAgent agent;
     private Animator anim;
     private bool isAtDestination;
-    private bool isAtDestination2;
 
 
     private void Start()
     {
-        
+
         mainCamera = Camera.main;
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponentInChildren<Animator>();
-        
+        isAtDestination = true;
+
     }
     void Update()
     {
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButton(1))
         {
-            isAtDestination2 = true;
-            anim.SetFloat("Speed", 1);
+            agent.isStopped = false;
+            anim.SetFloat("Speed", 0.5f);
             RaycastHit hit;
             if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit))
             {
-                anim.SetFloat("Speed", 1);
+                anim.SetFloat("Speed", 0.5f);
                 agent.SetDestination(hit.point);
                 isAtDestination = false;
                 Debug.Log("Проиграна анимация walk");
+                Debug.Log("destination = " + agent.destination);
+                // Debug.Log("remainingDistance = " );
+                Debug.Log("remainingDistance = " + agent.remainingDistance);
+                //Debug.Log("stoppingDistance = " + agent.stoppingDistance);
             }
         }
 
-        if (isAtDestination2)
+        // Проверка, достигла ли цель назначения
+        if (agent.remainingDistance <= 0)
         {
-            // Проверка, достигла ли цель назначения
-            if (agent.remainingDistance <= agent.stoppingDistance)
+            if (!isAtDestination)
             {
-
-                if (!isAtDestination)
-                {
-                    isAtDestination2 = false;
-                    Debug.Log("Проиграна анимация stand");
-                    // Вызов анимации после достижения цели
-                    anim.SetFloat("Speed", 0);
-                    isAtDestination = true;
-                }
+                // Вызов анимации после достижения цели
+                anim.SetFloat("Speed", 1);
+                isAtDestination = true;
+                Debug.Log("Проиграна анимация stand");
             }
+        }
+
+        if (Input.GetKey(KeyCode.S))
+        {
+            agent.isStopped = true;
+            agent.ResetPath();
+
+            anim.SetFloat("Speed", 1);
+            isAtDestination = true;
+            Debug.Log("Проиграна анимация stand");
         }
     }
-
-
-
 
 }
