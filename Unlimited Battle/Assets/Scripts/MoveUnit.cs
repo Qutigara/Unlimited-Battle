@@ -7,6 +7,7 @@ public class MoveUnit : MonoBehaviour
     private NavMeshAgent agent;
     private Animator anim;
     private bool isAtDestination;
+    private bool isClicked;
 
 
     private void Start()
@@ -16,18 +17,29 @@ public class MoveUnit : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponentInChildren<Animator>();
         isAtDestination = true;
+        //isClicked = true;
 
     }
     void Update()
     {
+        Run();
+
+        Idle();
+       
+        StopMoving();
+    }
+
+    private void Run()
+    {
         if (Input.GetMouseButton(1))
         {
+            //isClicked = false;
             agent.isStopped = false;
-            anim.SetFloat("Speed", 0.5f);
+            RunAnimation();
             RaycastHit hit;
             if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit))
             {
-                anim.SetFloat("Speed", 0.5f);
+                RunAnimation();
                 agent.SetDestination(hit.point);
                 isAtDestination = false;
                 Debug.Log("Проиграна анимация walk");
@@ -37,28 +49,44 @@ public class MoveUnit : MonoBehaviour
                 //Debug.Log("stoppingDistance = " + agent.stoppingDistance);
             }
         }
+        //if (Input.GetMouseButtonUp(1) & !isClicked) { isClicked = true; }
+    }
 
+    private void Idle()
+    {
         // Проверка, достигла ли цель назначения
         if (agent.remainingDistance <= 0)
         {
             if (!isAtDestination)
             {
                 // Вызов анимации после достижения цели
-                anim.SetFloat("Speed", 1);
+                IdleAnimation();
                 isAtDestination = true;
                 Debug.Log("Проиграна анимация stand");
             }
         }
-
-        if (Input.GetKey(KeyCode.S))
+    }
+    private void StopMoving()
+    {
+        if (Input.GetKeyDown(KeyCode.S))
         {
             agent.isStopped = true;
             agent.ResetPath();
 
-            anim.SetFloat("Speed", 1);
+            IdleAnimation();
             isAtDestination = true;
             Debug.Log("Проиграна анимация stand");
         }
+    }
+
+    private void IdleAnimation()
+    {
+        anim.SetBool("isRun", false);
+    }
+
+    private void RunAnimation()
+    {
+        anim.SetBool("isRun", true);
     }
 
 }
