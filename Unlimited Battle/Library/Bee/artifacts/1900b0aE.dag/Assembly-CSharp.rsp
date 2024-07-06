@@ -361,11 +361,13 @@
 "Assets/AOSFogWar/Examples/csFogVisibilityAgent.cs"
 "Assets/AOSFogWar/Examples/csRevealerSpawner.cs"
 "Assets/AOSFogWar/Shadowcaster.cs"
+"Assets/AttackController.cs"
 "Assets/Mini Simple Characters Skeleton Demo/Readme/Scripts/Readme.cs"
-"Assets/Scripts/AttackController.cs"
 "Assets/Scripts/CameraController.cs"
+"Assets/Scripts/Enemy.cs"
 "Assets/Scripts/GameController.cs"
 "Assets/Scripts/Menu.cs"
+"Assets/Scripts/MoveCameraToHero.cs"
 "Assets/Scripts/MoveUnit.cs"
 "Assets/Scripts/Player.cs"
 "Assets/Scripts/Unit.cs"
@@ -404,6 +406,8 @@
 "Assets/TextMesh Pro/Examples & Extras/Scripts/VertexShakeB.cs"
 "Assets/TextMesh Pro/Examples & Extras/Scripts/VertexZoom.cs"
 "Assets/TextMesh Pro/Examples & Extras/Scripts/WarpTextExample.cs"
+"Assets/UnitAttackState.cs"
+"Assets/UnitFollowState.cs"
 "Assets/UnitIdleState.cs"
 -langversion:9.0
 /deterministic

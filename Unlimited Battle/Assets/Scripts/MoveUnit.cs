@@ -3,90 +3,79 @@ using UnityEngine.AI;
 
 public class MoveUnit : MonoBehaviour
 {
-    private Camera mainCamera;
-    private NavMeshAgent agent;
-    private Animator anim;
-    private bool isAtDestination;
-    private bool isClicked;
 
+    Camera cam;
+    NavMeshAgent agent;
+    public LayerMask ground;
+    public LayerMask attackable;
+    private Animator anim;
+    AttackController attackController;
+
+    public bool isCommandedToMove;
 
     private void Start()
     {
-
-        mainCamera = Camera.main;
+        cam = Camera.main;
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponentInChildren<Animator>();
-        isAtDestination = true;
-        //isClicked = true;
 
     }
     void Update()
     {
-        Run();
-
-        Idle();
-       
-        StopMoving();
-    }
-
-    private void Run()
-    {
         if (Input.GetMouseButton(1))
         {
-            //isClicked = false;
-            agent.isStopped = false;
-            RunAnimation();
             RaycastHit hit;
-            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit))
+            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+            anim.SetBool("isIdle", false);
+            anim.SetBool("isRun", true);
+            anim.SetBool("isAttack", false);
+           
+            
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, ground))
             {
-                RunAnimation();
-                agent.SetDestination(hit.point);
-                isAtDestination = false;
-                Debug.Log("Проиграна анимация walk");
-                Debug.Log("destination = " + agent.destination);
-                // Debug.Log("remainingDistance = " );
-                Debug.Log("remainingDistance = " + agent.remainingDistance);
-                //Debug.Log("stoppingDistance = " + agent.stoppingDistance);
-            }
-        }
-        //if (Input.GetMouseButtonUp(1) & !isClicked) { isClicked = true; }
-    }
 
-    private void Idle()
-    {
-        // Проверка, достигла ли цель назначения
-        if (agent.remainingDistance <= 0)
-        {
-            if (!isAtDestination)
-            {
-                // Вызов анимации после достижения цели
-                IdleAnimation();
-                isAtDestination = true;
-                Debug.Log("Проиграна анимация stand");
+                    
+                    anim.SetBool("isRun", true);
+                    anim.SetBool("isAttack", false);
+                    isCommandedToMove = true;
+                    agent.SetDestination(hit.point);
+                
             }
+            
+                    
+                    
+                
+            
+
+
+
+           
         }
-    }
-    private void StopMoving()
-    {
+
+
+
+        if (agent.hasPath == false || agent.remainingDistance <= agent.stoppingDistance)
+        {
+
+            anim.SetBool("isRun", false);
+            anim.SetBool("isIdle", true);
+            isCommandedToMove = false;
+        }
+
         if (Input.GetKeyDown(KeyCode.S))
         {
+            isCommandedToMove = false;
             agent.isStopped = true;
             agent.ResetPath();
+            anim.SetBool("isAttack", false);
+            anim.SetBool("isRun", false);
+            anim.SetBool("isIdle", true);
 
-            IdleAnimation();
-            isAtDestination = true;
-            Debug.Log("Проиграна анимация stand");
+
+
         }
     }
 
-    private void IdleAnimation()
-    {
-        anim.SetBool("isRun", false);
-    }
-
-    private void RunAnimation()
-    {
-        anim.SetBool("isRun", true);
-    }
+   
 
 }

@@ -24,7 +24,12 @@ public class UnitSelectionMeneger : MonoBehaviour
 
     public LayerMask clickable;
     public LayerMask ground;
+    public LayerMask attackable;
     public GameObject groundMarker;
+    public bool attackCursorVisible;
+
+    
+
 
     private Camera cam;
 
@@ -68,6 +73,53 @@ public class UnitSelectionMeneger : MonoBehaviour
             }
 
         }
+
+        //Attack Target
+        if (unitsSelected.Count > 0 && AtleastOneOffensiveUnit(unitsSelected))
+        {
+
+            RaycastHit hit;
+            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+
+
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, attackable))
+            {
+                attackCursorVisible = true;
+
+                if (Input.GetMouseButtonDown(1))
+                {
+                    Transform target = hit.transform;
+
+                    foreach (GameObject unit in unitsSelected)
+                    {
+                        if (unit.GetComponent<AttackController>())
+                        {
+                            unit.GetComponent<AttackController>().targetToAttack = target;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                attackCursorVisible = false;
+            }
+
+        }
+
+    }
+
+    private bool AtleastOneOffensiveUnit(List<GameObject> unitsSelected) 
+    {
+        foreach (GameObject unit in unitsSelected)
+        {
+            if (unit.GetComponent<AttackController>())
+            {
+                return true;
+            }
+
+            
+        }
+        return false;
     }
 
     private void DeselectAll()
@@ -75,8 +127,16 @@ public class UnitSelectionMeneger : MonoBehaviour
         
         foreach (var unit in unitsSelected)
         {
-            EnableMoveUnit(unit, false);
-            TriggerSelectionIndicator(unit, false);
+            if (unit.CompareTag("Enemy"))
+            {
+                unit.transform.GetChild(3).gameObject.SetActive(false);
+            }
+            else
+            {
+                EnableMoveUnit(unit, false);
+                TriggerSelectionIndicator(unit, false);
+            }
+            
         }
 
         groundMarker.SetActive(false);
@@ -88,10 +148,18 @@ public class UnitSelectionMeneger : MonoBehaviour
     private void SelectByClicking(GameObject unit)
     {
         DeselectAll();
+        if (unit.CompareTag("Enemy"))
+        {
+            unitsSelected.Add(unit);
+            unit.transform.GetChild(3).gameObject.SetActive(true);
+        }
+        else
+        {
+            unitsSelected.Add(unit);
+            TriggerSelectionIndicator(unit, true);
+            EnableMoveUnit(unit, true);
+        }
 
-        unitsSelected.Add(unit);
-        TriggerSelectionIndicator(unit, true);
-        EnableMoveUnit(unit, true);
 
     }
 
@@ -106,6 +174,7 @@ public class UnitSelectionMeneger : MonoBehaviour
         {
             unitsSelected.Add(unit);
             TriggerSelectionIndicator(unit, true);
+            
             EnableMoveUnit(unit,true);
         }
         else
