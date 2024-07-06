@@ -365,6 +365,7 @@
 "Assets/Scripts/AttackController.cs"
 "Assets/Scripts/CameraController.cs"
 "Assets/Scripts/GameController.cs"
+"Assets/Scripts/Menu.cs"
 "Assets/Scripts/MoveUnit.cs"
 "Assets/Scripts/Player.cs"
 "Assets/Scripts/Unit.cs"
