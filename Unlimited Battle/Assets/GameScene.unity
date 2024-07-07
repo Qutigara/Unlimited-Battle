@@ -8900,6 +8900,18 @@ PrefabInstance:
       propertyPath: unitMaxHealth
       value: 500
       objectReference: {fileID: 0}
+    - target: {fileID: 3784384637270152601, guid: 8d2efe2e94611bb46a7092b9230b2d4e, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 85
+      objectReference: {fileID: 0}
+    - target: {fileID: 3784384637270152601, guid: 8d2efe2e94611bb46a7092b9230b2d4e, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 3784384637270152601, guid: 8d2efe2e94611bb46a7092b9230b2d4e, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 14.55
+      objectReference: {fileID: 0}
     - target: {fileID: 3935096901108748870, guid: 8d2efe2e94611bb46a7092b9230b2d4e, type: 3}
       propertyPath: m_Layer
       value: 9
@@ -8916,6 +8928,10 @@ PrefabInstance:
       propertyPath: facingCamera
       value: 
       objectReference: {fileID: 1030977073}
+    - target: {fileID: 9033711488228058695, guid: 8d2efe2e94611bb46a7092b9230b2d4e, type: 3}
+      propertyPath: m_Interactable
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9101202343250331861, guid: 8d2efe2e94611bb46a7092b9230b2d4e, type: 3}
       propertyPath: m_Layer
       value: 9
@@ -8933,6 +8949,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1511681061850407209, guid: 6f2aa4e9123548e4dbe82314a015975e, type: 3}
+      propertyPath: m_Interactable
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2153587805193502358, guid: 6f2aa4e9123548e4dbe82314a015975e, type: 3}
       propertyPath: facingCamera
       value: 
@@ -8988,6 +9008,18 @@ PrefabInstance:
     - target: {fileID: 5619706912614716362, guid: 6f2aa4e9123548e4dbe82314a015975e, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6710491607404860151, guid: 6f2aa4e9123548e4dbe82314a015975e, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 85
+      objectReference: {fileID: 0}
+    - target: {fileID: 6710491607404860151, guid: 6f2aa4e9123548e4dbe82314a015975e, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6710491607404860151, guid: 6f2aa4e9123548e4dbe82314a015975e, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 14.15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

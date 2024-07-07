@@ -17,7 +17,7 @@ public class FaceCamera : MonoBehaviour
     {
         if (facingCamera)
         {
-            localTrans.LookAt(2 * localTrans.position - facingCamera.transform.position);
+            localTrans.LookAt(localTrans.position + facingCamera.transform.forward);
         }
     }
 }
