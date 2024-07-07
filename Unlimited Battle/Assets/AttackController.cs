@@ -11,11 +11,13 @@ public class AttackController : MonoBehaviour
     public Material runStateMaterial;
     public Material attackStateMaterial;
 
+    public bool isPlayer;
+
     public int unitDamage;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Enemy") && targetToAttack == null)
+        if (isPlayer && other.CompareTag("Enemy") && targetToAttack == null)
         {
             targetToAttack = other.transform;
         }
@@ -23,7 +25,7 @@ public class AttackController : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Enemy") && targetToAttack != null)
+        if (isPlayer && other.CompareTag("Enemy") && targetToAttack != null)
         {
             targetToAttack = null;
         }

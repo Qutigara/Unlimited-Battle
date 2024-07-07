@@ -362,6 +362,8 @@
 "Assets/AOSFogWar/Examples/csRevealerSpawner.cs"
 "Assets/AOSFogWar/Shadowcaster.cs"
 "Assets/AttackController.cs"
+"Assets/FaceCamera.cs"
+"Assets/HealthTracker.cs"
 "Assets/Mini Simple Characters Skeleton Demo/Readme/Scripts/Readme.cs"
 "Assets/Scripts/CameraController.cs"
 "Assets/Scripts/Enemy.cs"

@@ -8,7 +8,11 @@ public class UnitAttackState : StateMachineBehaviour
     NavMeshAgent agent;
     AttackController attackController;
 
-    public float stopAttackingDistance = 1.7f;
+    public float stopAttackingDistance = 2f;
+
+    public float attackRate = 0.2f;
+    private float attackTimer;
+    private bool animationattack;
 
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
@@ -17,6 +21,8 @@ public class UnitAttackState : StateMachineBehaviour
         agent = animator.GetComponent<NavMeshAgent>();
         attackController = animator.GetComponent<AttackController>();
         attackController.SetAttackMaterial();
+        animationattack = true;
+        attackTimer = 1f / attackRate;
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -26,13 +32,27 @@ public class UnitAttackState : StateMachineBehaviour
         {
             LookAtTarget();
 
+            Debug.Log("Дерусь");
             //agent.SetDestination(attackController.targetToAttack.position);
 
-
-           // var damageToInflict = attackController.unitDamage;
-
-            //attackController.targetToAttack.GetComponent<Enemy>().ReciveDamage(damageToInflict);
-
+            if (attackTimer <= 0)
+            {
+                
+                animationattack = true;
+                animator.SetBool("isAttack", false);
+                Attack();
+                attackTimer = 1f / attackRate;
+            }
+            else
+            {
+                if (animationattack)
+                {
+                    animator.SetBool("isAttack", true);
+                    animationattack = false;
+                }
+                
+                attackTimer -= Time.deltaTime;
+            }
 
             float distanceFromTarget = Vector3.Distance(attackController.targetToAttack.position, animator.transform.position);
             if (distanceFromTarget > stopAttackingDistance || attackController.targetToAttack == null)
@@ -49,6 +69,20 @@ public class UnitAttackState : StateMachineBehaviour
 
         }
     }
+
+
+    private void Attack()
+    {
+        
+
+        var damageToInflict = attackController.unitDamage;
+
+        attackController.targetToAttack.GetComponent<Unit>().TakeDamage(damageToInflict);
+
+        
+
+    }
+
 
     private void LookAtTarget()
     {
