@@ -39,7 +39,7 @@ public class UnitFollowState : StateMachineBehaviour
                 if (distanceFromTarget < attackingDistanse)
                 {
                     
-                    agent.SetDestination(animator.transform.position);
+                    //agent.SetDestination(animator.transform.position);
                     animator.SetBool("isAttack", true);// Move to Attacking State
 
                 }
@@ -55,6 +55,10 @@ public class UnitFollowState : StateMachineBehaviour
 
 
                 }
+            }
+            else
+            {
+                Debug.Log("Послан");
             }
         }
 

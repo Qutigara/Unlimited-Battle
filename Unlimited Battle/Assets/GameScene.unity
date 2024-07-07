@@ -8928,6 +8928,10 @@ PrefabInstance:
       propertyPath: facingCamera
       value: 
       objectReference: {fileID: 1030977073}
+    - target: {fileID: 9011547843006158089, guid: 8d2efe2e94611bb46a7092b9230b2d4e, type: 3}
+      propertyPath: isPlayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9033711488228058695, guid: 8d2efe2e94611bb46a7092b9230b2d4e, type: 3}
       propertyPath: m_Interactable
       value: 0
@@ -8957,6 +8961,38 @@ PrefabInstance:
       propertyPath: facingCamera
       value: 
       objectReference: {fileID: 1030977073}
+    - target: {fileID: 2667958487271206589, guid: 6f2aa4e9123548e4dbe82314a015975e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3153988927843283586, guid: 6f2aa4e9123548e4dbe82314a015975e, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.1728014
+      objectReference: {fileID: 0}
+    - target: {fileID: 3153988927843283586, guid: 6f2aa4e9123548e4dbe82314a015975e, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.0000050990766
+      objectReference: {fileID: 0}
+    - target: {fileID: 3153988927843283586, guid: 6f2aa4e9123548e4dbe82314a015975e, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.02461
+      objectReference: {fileID: 0}
+    - target: {fileID: 3153988927843283586, guid: 6f2aa4e9123548e4dbe82314a015975e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.005
+      objectReference: {fileID: 0}
+    - target: {fileID: 3153988927843283586, guid: 6f2aa4e9123548e4dbe82314a015975e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 3153988927843283586, guid: 6f2aa4e9123548e4dbe82314a015975e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.045
+      objectReference: {fileID: 0}
+    - target: {fileID: 3233229401181342112, guid: 6f2aa4e9123548e4dbe82314a015975e, type: 3}
+      propertyPath: m_Mass
+      value: 500
+      objectReference: {fileID: 0}
     - target: {fileID: 5272750427288419659, guid: 6f2aa4e9123548e4dbe82314a015975e, type: 3}
       propertyPath: m_Name
       value: ToonRTS_demo_Knight

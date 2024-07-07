@@ -22,22 +22,22 @@ public class MoveUnit : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetMouseButton(1))
+        if (Input.GetMouseButtonDown(1))
         {
             RaycastHit hit;
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
             anim.SetBool("isIdle", false);
             anim.SetBool("isRun", true);
             anim.SetBool("isAttack", false);
-           
-            
+            isCommandedToMove = true;
+
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, ground))
             {
-
-                    
-                    anim.SetBool("isRun", true);
+                isCommandedToMove = true;
+                //attackController.targetToAttack = null;
+                anim.SetBool("isRun", true);
                     anim.SetBool("isAttack", false);
-                    isCommandedToMove = true;
+                    
                     agent.SetDestination(hit.point);
                 
             }
@@ -58,8 +58,13 @@ public class MoveUnit : MonoBehaviour
         {
 
             anim.SetBool("isRun", false);
-            anim.SetBool("isIdle", true);
+            //anim.SetBool("isIdle", true);
             isCommandedToMove = false;
+        }
+        else
+        {
+            isCommandedToMove = true;
+            anim.SetBool("isRun", true);
         }
 
         if (Input.GetKeyDown(KeyCode.S))
@@ -70,7 +75,7 @@ public class MoveUnit : MonoBehaviour
             anim.SetBool("isAttack", false);
             anim.SetBool("isRun", false);
             anim.SetBool("isIdle", true);
-
+            //attackController.targetToAttack = null;
 
 
         }

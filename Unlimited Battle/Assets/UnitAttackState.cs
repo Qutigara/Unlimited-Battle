@@ -60,13 +60,14 @@ public class UnitAttackState : StateMachineBehaviour
                 // Debug.Log("4");
                 
                 animator.SetBool("isAttack", false);
-                animator.SetBool("isIdle", true);
+                //animator.SetBool("isIdle", true);
                 // Move to Attacking State
 
             }
-
-
-
+        }
+        else
+        {
+            animator.SetBool("isAttack", false);
         }
     }
 
