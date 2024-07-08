@@ -41,7 +41,7 @@ public class UnitFollowState : StateMachineBehaviour
                     agent.SetDestination(animator.transform.position);
 
                     animator.SetBool("isAttack", true);// Move to Attacking State
-
+                    animator.SetBool("isRun", false);
                 }
                 else 
                 {
