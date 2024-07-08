@@ -48,14 +48,14 @@ public class HealthTracker : MonoBehaviour
     {
         float elapsedTime = 0f;
 
-        while (elapsedTime < duration)
-        {
-            HealthBarSlider.value = Mathf.Lerp(startValue, targetValue, elapsedTime / duration);
+        //while (elapsedTime < duration)
+        //{
+            HealthBarSlider.value = Mathf.Lerp(startValue, targetValue, 0); //elapsedTime / duration
 
-            elapsedTime += Time.deltaTime;
+            //elapsedTime += Time.deltaTime;
 
             yield return null;
-        }
+        //}
 
         HealthBarSlider.value = targetValue;
 

@@ -7,6 +7,7 @@ public class Unit : MonoBehaviour
 
     private float unitHealth;
     public float unitMaxHealth;
+    public int OwnerPlayer;
 
     public HealthTracker healthTracker;
 
@@ -44,4 +45,7 @@ public class Unit : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    
+
 }
