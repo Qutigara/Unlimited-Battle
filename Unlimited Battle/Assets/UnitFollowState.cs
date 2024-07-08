@@ -10,6 +10,7 @@ public class UnitFollowState : StateMachineBehaviour
 
     NavMeshAgent agent;
     public float attackingDistanse = 1.7f;
+    public float rotationSpeed = 5f;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
@@ -29,44 +30,35 @@ public class UnitFollowState : StateMachineBehaviour
         }
         else
         {
-            
             if (animator.transform.GetComponent<MoveUnit>().isCommandedToMove == false)
             {
                 
-
                 //Should Unit Transition to Attack State?
                 float distanceFromTarget = Vector3.Distance(attackController.targetToAttack.position, animator.transform.position);
                 if (distanceFromTarget < attackingDistanse)
                 {
                     
                     agent.SetDestination(animator.transform.position);
+
                     animator.SetBool("isAttack", true);// Move to Attacking State
 
                 }
-                else
+                else 
                 {
                     // Moving Unit toward Enemy
                     Debug.Log("1");
                     animator.SetBool("isRun", true);
                     animator.SetBool("isAttack", false);
                     agent.SetDestination(attackController.targetToAttack.position);
-                    animator.transform.LookAt(attackController.targetToAttack);
-                    
+                   // animator.transform.LookAt(attackController.targetToAttack);
+
+                    Vector3 direction = attackController.targetToAttack.position - animator.transform.position;
+                    Quaternion rotation = Quaternion.LookRotation(direction);
+                    animator.transform.rotation = Quaternion.Lerp(animator.transform.rotation, rotation, rotationSpeed * Time.deltaTime);
 
 
                 }
             }
-           
         }
-
-
-       
-          
-
     }
-
-
-
-
-
 }

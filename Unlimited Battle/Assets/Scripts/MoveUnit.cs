@@ -36,22 +36,12 @@ public class MoveUnit : MonoBehaviour
                 isCommandedToMove = true;
                 //attackController.targetToAttack = null;
                 anim.SetBool("isRun", true);
-                    anim.SetBool("isAttack", false);
+                anim.SetBool("isAttack", false);
                     
-                    agent.SetDestination(hit.point);
+                agent.SetDestination(hit.point);
                 
             }
-            
-                    
-                    
-                
-            
-
-
-
-           
         }
-
 
 
         if (agent.hasPath == false || agent.remainingDistance <= agent.stoppingDistance)
@@ -76,7 +66,6 @@ public class MoveUnit : MonoBehaviour
             anim.SetBool("isRun", false);
             anim.SetBool("isIdle", true);
             //attackController.targetToAttack = null;
-
 
         }
     }

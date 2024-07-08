@@ -65,6 +65,4 @@ public class AttackController : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, 2f);
     }
 
-
-
 }
