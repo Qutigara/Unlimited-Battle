@@ -53,7 +53,7 @@ public class MoveUnit : MonoBehaviour
         }
         else
         {
-            isCommandedToMove = true;
+            //isCommandedToMove = true;
             anim.SetBool("isRun", true);
         }
 

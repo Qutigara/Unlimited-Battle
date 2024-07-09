@@ -372,6 +372,7 @@
 "Assets/Scripts/MoveCameraToHero.cs"
 "Assets/Scripts/MoveUnit.cs"
 "Assets/Scripts/Player.cs"
+"Assets/Scripts/Timer.cs"
 "Assets/Scripts/Unit.cs"
 "Assets/Scripts/UnitSelectionMeneger.cs"
 "Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark01.cs"
