@@ -9913,6 +9913,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4102612589541561974, guid: 6f2aa4e9123548e4dbe82314a015975e, type: 3}
+      propertyPath: m_IgnoreReversedGraphics
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5272750427288419659, guid: 6f2aa4e9123548e4dbe82314a015975e, type: 3}
       propertyPath: m_Name
       value: ToonRTS_demo_Knight

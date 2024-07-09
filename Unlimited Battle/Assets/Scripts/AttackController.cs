@@ -50,7 +50,7 @@ public class AttackController : MonoBehaviour
         {
             if (CheckOwnerTarget(other))
             {
-
+              
                 targetToAttack = other.transform;
             }
 

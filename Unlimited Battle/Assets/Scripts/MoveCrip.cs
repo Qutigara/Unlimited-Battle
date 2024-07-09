@@ -23,45 +23,54 @@ public class MoveCrip : MonoBehaviour
         anim = GetComponentInChildren<Animator>();
         targetToMove = GameObject.Find("MidCripsImpactPoint").GetComponent<Transform>();
         caster = GetComponent<Unit>(); // Инициализация caster
+        caster.isCommandedToMove = false;
+        attackController = caster.GetComponent<AttackController>();
     }
     void Update()
     {
 
-        agent.SetDestination(targetToMove.position);
-        if (Input.GetMouseButtonDown(1))
+        if(attackController.targetToAttack == null)
         {
-            RaycastHit hit;
-            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-            anim.SetBool("isIdle", false);
-            anim.SetBool("isRun", true);
-            anim.SetBool("isAttack", false);
-            //isCommandedToMove = true;
-
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity, ground))
-            {
-                //isCommandedToMove = true;
-                //attackController.targetToAttack = null;
-                anim.SetBool("isRun", true);
-                anim.SetBool("isAttack", false);
-
-                agent.SetDestination(hit.point);
-
-            }
-        }
-
-
-        if (agent.hasPath == false || agent.remainingDistance <= agent.stoppingDistance)
-        {
-
-            anim.SetBool("isRun", false);
-            //anim.SetBool("isIdle", true);
-            caster.isCommandedToMove = false;
-        }
-        else
-        {
-            //isCommandedToMove = true;
+            agent.SetDestination(targetToMove.position);
             anim.SetBool("isRun", true);
         }
+        
+        
+        //if (Input.GetMouseButtonDown(1))
+        //{
+        //    RaycastHit hit;
+        //    Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+        //    anim.SetBool("isIdle", false);
+        //    anim.SetBool("isRun", true);
+        //    anim.SetBool("isAttack", false);
+        //    //isCommandedToMove = true;
+
+        //    if (Physics.Raycast(ray, out hit, Mathf.Infinity, ground))
+        //    {
+        //        //isCommandedToMove = true;
+        //        //attackController.targetToAttack = null;
+        //        anim.SetBool("isRun", true);
+        //        anim.SetBool("isAttack", false);
+        //        Debug.Log("ЗАШЛА ");
+        //        agent.SetDestination(hit.point);
+
+        //    }
+        //}
+
+
+        //if (agent.hasPath == false || agent.remainingDistance <= agent.stoppingDistance)
+        //{
+        //    Debug.Log("Сработала первая ");
+        //    anim.SetBool("isRun", false);
+        //    //anim.SetBool("isIdle", true);
+        //    //caster.isCommandedToMove = false;
+        //}
+        //else
+        //{
+        //    Debug.Log("Сработала втарая ");
+        //    //isCommandedToMove = true;
+        //    anim.SetBool("isRun", true);
+        //}
 
         //if (Input.GetKeyDown(KeyCode.S))
         //{

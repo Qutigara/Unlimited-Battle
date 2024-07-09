@@ -23,6 +23,7 @@ public class UnitAttackState : StateMachineBehaviour
         attackController.SetAttackMaterial();
         animationattack = true;
         attackTimer = 1f / attackRate;
+        
 
     }
 
@@ -32,6 +33,7 @@ public class UnitAttackState : StateMachineBehaviour
         if (attackController.targetToAttack != null && animator.transform.GetComponent<Unit>().isCommandedToMove == false)
         {
             LookAtTarget();
+
 
 
             //agent.SetDestination(attackController.targetToAttack.position);

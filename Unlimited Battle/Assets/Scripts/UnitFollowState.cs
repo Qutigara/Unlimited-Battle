@@ -7,7 +7,7 @@ public class UnitFollowState : StateMachineBehaviour
 {
 
     AttackController attackController;
-
+    Unit caster;
     NavMeshAgent agent;
     public float attackingDistanse = 1.7f;
     public float rotationSpeed = 5f;
@@ -18,6 +18,7 @@ public class UnitFollowState : StateMachineBehaviour
         attackController = animator.transform.GetComponent<AttackController>();
         agent = animator.transform.GetComponent<NavMeshAgent>();
         attackController.SetRunMaterial();
+        
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -47,11 +48,14 @@ public class UnitFollowState : StateMachineBehaviour
                     animator.SetBool("isAttack", true);// Move to Attacking State
                     //animator.SetBool("isIdle", true);
                     animator.SetBool("isRun", false);
+
+                    
                 }
                 else
                 {
                     // Moving Unit toward Enemy
-                    // Debug.Log("1");
+
+                     
                     //animator.SetBool("isRun", true);
                     animator.SetBool("isAttack", false);
                     agent.SetDestination(attackController.targetToAttack.position);
