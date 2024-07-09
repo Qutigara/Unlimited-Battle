@@ -23,21 +23,23 @@ public class UnitAttackState : StateMachineBehaviour
         attackController.SetAttackMaterial();
         animationattack = true;
         attackTimer = 1f / attackRate;
+
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (attackController.targetToAttack != null && animator.transform.GetComponent<MoveUnit>().isCommandedToMove == false)
+        if (attackController.targetToAttack != null && animator.transform.GetComponent<Unit>().isCommandedToMove == false)
         {
             LookAtTarget();
 
-            Debug.Log("Дерусь");
-            //agent.SetDestination(attackController.targetToAttack.position);
 
+            //agent.SetDestination(attackController.targetToAttack.position);
+            //animator.SetBool("isIdle", false);
+            //animator.SetBool("isRun", false);
             if (attackTimer <= 0)
             {
-                
+
                 animationattack = true;
                 animator.SetBool("isAttack", false);
                 Attack();
@@ -45,12 +47,13 @@ public class UnitAttackState : StateMachineBehaviour
             }
             else
             {
+
                 if (animationattack)
                 {
                     animator.SetBool("isAttack", true);
                     animationattack = false;
                 }
-                
+
                 attackTimer -= Time.deltaTime;
             }
 
@@ -58,9 +61,9 @@ public class UnitAttackState : StateMachineBehaviour
             if (distanceFromTarget > stopAttackingDistance || attackController.targetToAttack == null)
             {
                 // Debug.Log("4");
-                
+
                 animator.SetBool("isAttack", false);
-                //animator.SetBool("isIdle", true);
+                animator.SetBool("isRun", true);
                 // Move to Attacking State
 
             }
@@ -74,13 +77,13 @@ public class UnitAttackState : StateMachineBehaviour
 
     private void Attack()
     {
-        
+
 
         var damageToInflict = attackController.unitDamage;
 
         attackController.targetToAttack.GetComponent<Unit>().TakeDamage(damageToInflict);
 
-        
+
 
     }
 
@@ -97,7 +100,7 @@ public class UnitAttackState : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-       
+
     }
 
 

@@ -12,7 +12,7 @@ public class CameraController : MonoBehaviour
     public float rotateSpeed = 100f;
     public float edgeScrollSpeed = 5f; // Скорость скроллинга по краям экрана
     public Vector2 panLimit;
-
+    public int OwnerCamera;
     // Текущий масштаб камеры
     private float currentZoom = 10f;
 

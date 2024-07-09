@@ -7,7 +7,8 @@ public class Unit : MonoBehaviour
 
     private float unitHealth;
     public float unitMaxHealth;
-    public int OwnerPlayer;
+    public int OwnerUnit;
+    public bool isCommandedToMove;
 
     public HealthTracker healthTracker;
 
@@ -25,7 +26,7 @@ public class Unit : MonoBehaviour
 
     internal void TakeDamage(int damageToInflict)
     {
-       unitHealth -= damageToInflict;
+        unitHealth -= damageToInflict;
         UpdateHealthUI();
     }
 
@@ -33,7 +34,7 @@ public class Unit : MonoBehaviour
     {
         healthTracker.UpdateSliderValue(unitHealth, unitMaxHealth);
 
-        if (unitHealth < 0) 
+        if (unitHealth < 0)
         {
             //Dying Logic
 
@@ -46,6 +47,6 @@ public class Unit : MonoBehaviour
         }
     }
 
-    
+
 
 }

@@ -11,8 +11,8 @@ public class MoveCrip : MonoBehaviour
     public LayerMask attackable;
     private Animator anim;
     AttackController attackController;
-
-    public bool isCommandedToMove;
+    Unit caster;
+    
 
     private Transform targetToMove;
 
@@ -22,7 +22,7 @@ public class MoveCrip : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponentInChildren<Animator>();
         targetToMove = GameObject.Find("MidCripsImpactPoint").GetComponent<Transform>();
-
+        caster = GetComponent<Unit>(); // Инициализация caster
     }
     void Update()
     {
@@ -35,11 +35,11 @@ public class MoveCrip : MonoBehaviour
             anim.SetBool("isIdle", false);
             anim.SetBool("isRun", true);
             anim.SetBool("isAttack", false);
-            isCommandedToMove = true;
+            //isCommandedToMove = true;
 
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, ground))
             {
-                isCommandedToMove = true;
+                //isCommandedToMove = true;
                 //attackController.targetToAttack = null;
                 anim.SetBool("isRun", true);
                 anim.SetBool("isAttack", false);
@@ -55,7 +55,7 @@ public class MoveCrip : MonoBehaviour
 
             anim.SetBool("isRun", false);
             //anim.SetBool("isIdle", true);
-            isCommandedToMove = false;
+            caster.isCommandedToMove = false;
         }
         else
         {

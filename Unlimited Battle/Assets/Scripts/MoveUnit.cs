@@ -10,36 +10,38 @@ public class MoveUnit : MonoBehaviour
     public LayerMask attackable;
     private Animator anim;
     AttackController attackController;
+    Unit caster;
 
-    public bool isCommandedToMove;
+    //public bool isCommandedToMove;
 
     private void Start()
     {
         cam = Camera.main;
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponentInChildren<Animator>();
+        caster = GetComponent<Unit>(); // Инициализация caster
 
     }
     void Update()
     {
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButton(1))
         {
             RaycastHit hit;
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
             anim.SetBool("isIdle", false);
             anim.SetBool("isRun", true);
             anim.SetBool("isAttack", false);
-            isCommandedToMove = true;
+
 
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, ground))
             {
-                isCommandedToMove = true;
+                caster.isCommandedToMove = true;
                 //attackController.targetToAttack = null;
                 anim.SetBool("isRun", true);
                 anim.SetBool("isAttack", false);
-                    
+
                 agent.SetDestination(hit.point);
-                
+
             }
         }
 
@@ -49,7 +51,7 @@ public class MoveUnit : MonoBehaviour
 
             anim.SetBool("isRun", false);
             //anim.SetBool("isIdle", true);
-            isCommandedToMove = false;
+            caster.isCommandedToMove = false;
         }
         else
         {
@@ -57,19 +59,9 @@ public class MoveUnit : MonoBehaviour
             anim.SetBool("isRun", true);
         }
 
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            isCommandedToMove = false;
-            agent.isStopped = true;
-            agent.ResetPath();
-            anim.SetBool("isAttack", false);
-            anim.SetBool("isRun", false);
-            anim.SetBool("isIdle", true);
-            //attackController.targetToAttack = null;
 
-        }
     }
 
-   
+
 
 }
