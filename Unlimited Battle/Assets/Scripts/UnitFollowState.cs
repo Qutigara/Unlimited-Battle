@@ -16,7 +16,13 @@ public class UnitFollowState : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         attackController = animator.transform.GetComponent<AttackController>();
+       s
         agent = animator.transform.GetComponent<NavMeshAgent>();
+        if (agent != null && !agent.enabled)
+        {
+            // If agent is not enabled, enable it
+            agent.enabled = true;
+        }
         attackController.SetRunMaterial();
         
     }
@@ -34,7 +40,7 @@ public class UnitFollowState : StateMachineBehaviour
         {
 
 
-            if (animator.transform.GetComponent<Unit>().isCommandedToMove == false)
+            if (animator.transform.GetComponent<Unit>().isCommandedToMove == false && agent != null  && animator != null)
             {
 
                 //Should Unit Transition to Attack State?
@@ -71,3 +77,57 @@ public class UnitFollowState : StateMachineBehaviour
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

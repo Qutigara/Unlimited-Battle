@@ -811,7 +811,7 @@ MonoBehaviour:
   purpleMidSide: {fileID: 1146909155}
   pinkMidSide: {fileID: 716346430}
   brownMidSide: {fileID: 194564653}
-  spawnInterval: 10
+  spawnInterval: 30
 --- !u!1 &73825204
 GameObject:
   m_ObjectHideFlags: 0
@@ -2694,8 +2694,8 @@ Transform:
   m_GameObject: {fileID: 482017705}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.6808734, y: -1.4385357, z: 11.628615}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 1.3321, y: -1.4385357, z: 12.0485}
+  m_LocalScale: {x: 1.4324785, y: 2.4001, z: 1.8589418}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 66863298}
@@ -10884,8 +10884,20 @@ PrefabInstance:
     m_TransformParent: {fileID: 66863298}
     m_Modifications:
     - target: {fileID: 3766747410715568362, guid: f6efa63efa25daf47b0996e1f4fb120d, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.4324785
+      objectReference: {fileID: 0}
+    - target: {fileID: 3766747410715568362, guid: f6efa63efa25daf47b0996e1f4fb120d, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2.4001
+      objectReference: {fileID: 0}
+    - target: {fileID: 3766747410715568362, guid: f6efa63efa25daf47b0996e1f4fb120d, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.8589418
+      objectReference: {fileID: 0}
+    - target: {fileID: 3766747410715568362, guid: f6efa63efa25daf47b0996e1f4fb120d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.6808734
+      value: 1.3321
       objectReference: {fileID: 0}
     - target: {fileID: 3766747410715568362, guid: f6efa63efa25daf47b0996e1f4fb120d, type: 3}
       propertyPath: m_LocalPosition.y
@@ -10893,7 +10905,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3766747410715568362, guid: f6efa63efa25daf47b0996e1f4fb120d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 11.628615
+      value: 12.0485
       objectReference: {fileID: 0}
     - target: {fileID: 3766747410715568362, guid: f6efa63efa25daf47b0996e1f4fb120d, type: 3}
       propertyPath: m_LocalRotation.w
@@ -10926,6 +10938,10 @@ PrefabInstance:
     - target: {fileID: 8702226345287170275, guid: f6efa63efa25daf47b0996e1f4fb120d, type: 3}
       propertyPath: m_Name
       value: MidCripsImpactPoint
+      objectReference: {fileID: 0}
+    - target: {fileID: 8702226345287170275, guid: f6efa63efa25daf47b0996e1f4fb120d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
