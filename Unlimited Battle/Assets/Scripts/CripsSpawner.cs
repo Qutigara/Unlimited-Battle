@@ -4,11 +4,18 @@ using UnityEngine;
 
 public class CripsSpawner : MonoBehaviour
 {
+    // Crips prefabs
+    public GameObject purpleCripPrefab;
+    public GameObject pinkCripPrefab;
+    public GameObject brownCripPrefab;
 
-    public GameObject cripPrefab;
-    public Transform[] spawnPoints;
+    // Team side for spawn crips
+    public GameObject purpleMidSide;
+    public GameObject pinkMidSide;
+    public GameObject brownMidSide;
 
-    public float spawnInterval = 60f;
+
+    public float spawnInterval = 9f;
     private float timer = 0f;
     // Start is called before the first frame update
     void Start()
@@ -35,12 +42,30 @@ public class CripsSpawner : MonoBehaviour
 
     private void SpawnBot()
     {
-        //Transform randomSpawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
+        // Purple team crips spawner
+        Transform[] purpleSpawnPoints = purpleMidSide.GetComponentsInChildren<Transform>();
 
-        for(int i = 0; i < spawnPoints.Length; i++)
+        foreach (Transform spawnPoint in purpleSpawnPoints)
         {
-            Instantiate(cripPrefab, spawnPoints[i].position, spawnPoints[i].rotation);
+            Instantiate(purpleCripPrefab, spawnPoint.position, spawnPoint.rotation);
         }
-        
+
+        // Pink team crips spawner
+        Transform[] pinkSpawnPoints = pinkMidSide.GetComponentsInChildren<Transform>();
+
+        foreach (Transform spawnPoint in pinkSpawnPoints)
+        {
+            Instantiate(pinkCripPrefab, spawnPoint.position, spawnPoint.rotation);
+        }
+
+        // Brown team crips spawner
+        Transform[] brownSpawnPoints = brownMidSide.GetComponentsInChildren<Transform>();
+
+        foreach (Transform spawnPoint in brownSpawnPoints)
+        {
+            Instantiate(brownCripPrefab, spawnPoint.position, spawnPoint.rotation);
+        }
+
+
     }
 }
