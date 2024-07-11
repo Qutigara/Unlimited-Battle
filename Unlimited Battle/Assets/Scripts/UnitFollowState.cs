@@ -16,7 +16,6 @@ public class UnitFollowState : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         attackController = animator.transform.GetComponent<AttackController>();
-       s
         agent = animator.transform.GetComponent<NavMeshAgent>();
         if (agent != null && !agent.enabled)
         {

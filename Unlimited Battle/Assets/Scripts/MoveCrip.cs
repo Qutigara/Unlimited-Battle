@@ -14,14 +14,14 @@ public class MoveCrip : MonoBehaviour
     Unit caster;
     
 
-    private Transform targetToMove;
+    //private Transform targetToMove;
 
     private void Start()
     {
         cam = Camera.main;
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponentInChildren<Animator>();
-        targetToMove = GameObject.Find("MidCripsImpactPoint").GetComponent<Transform>();
+        //targetToMove = GameObject.Find("MidCripsImpactPoint").GetComponent<Transform>();
         caster = GetComponent<Unit>(); // Инициализация caster
         caster.isCommandedToMove = false;
         attackController = caster.GetComponent<AttackController>();
@@ -31,7 +31,7 @@ public class MoveCrip : MonoBehaviour
 
         if(attackController.targetToAttack == null)
         {
-            agent.SetDestination(targetToMove.position);
+            //agent.SetDestination(targetToMove.position);
             anim.SetBool("isRun", true);
         }
         

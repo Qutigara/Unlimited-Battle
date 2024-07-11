@@ -1,27 +1,45 @@
+using FischlWorks_FogWar;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class CripsSpawner : MonoBehaviour
 {
-    // Crips prefabs
+    // Префабы крипов трёх команд
+    [BigHeader("Crips prefabs")]
     public GameObject purpleCripPrefab;
     public GameObject pinkCripPrefab;
     public GameObject brownCripPrefab;
 
-    // Team side for spawn crips
-    public GameObject purpleMidSide;
-    public GameObject pinkMidSide;
-    public GameObject brownMidSide;
+    // Точки спавна трёх команд для каждой их стороны
+    [BigHeader("Team side for spawn crips")]
+    [Header("Purple team")]
+    public GameObject purpleMidSideSpawnPoints;
+    public GameObject purpleLeftTopSideSpawnPoints;
+    public GameObject purpleBottomSideSpawnPoints;
 
+    [Header("Pink team")]
+    public GameObject pinkMidSideSpawnPoints;
+    public GameObject pinkLeftTopSideSpawnPoints;
+    public GameObject pinkRightTopSideSpawnPoints;
 
-    public float spawnInterval = 9f;
+    [Header("Brown team")]
+    public GameObject brownMidSideSpawnPoints;
+    public GameObject brownRightTopSideSpawnPoints;
+    public GameObject brownBottomSideSpawnPoints;
+
+    // Side impact points
+    [BigHeader("Side impact points")]
+    public GameObject middle;
+    public GameObject bottom;
+    public GameObject leftTop;
+    public GameObject rightTop;
+
+    [BigHeader("Spawn interval (sec)")]
+    [SerializeField]
+    private float spawnInterval = 14f;
     private float timer = 0f;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
@@ -35,37 +53,46 @@ public class CripsSpawner : MonoBehaviour
 
         if (timer >= spawnInterval) 
         {
-            SpawnBot();
+            // Middle
+            SpawnCrips(purpleCripPrefab, purpleMidSideSpawnPoints, middle);
+            SpawnCrips(pinkCripPrefab, pinkMidSideSpawnPoints, middle);
+            SpawnCrips(brownCripPrefab, brownMidSideSpawnPoints, middle);
+
+            // Bottom
+            SpawnCrips(purpleCripPrefab, purpleBottomSideSpawnPoints, bottom);
+            SpawnCrips(brownCripPrefab, brownBottomSideSpawnPoints, bottom);
+
+            // Left top
+            SpawnCrips(purpleCripPrefab, purpleLeftTopSideSpawnPoints, leftTop);
+            SpawnCrips(pinkCripPrefab, pinkLeftTopSideSpawnPoints, leftTop);
+
+
+            // Right top
+            SpawnCrips(pinkCripPrefab, pinkRightTopSideSpawnPoints, rightTop);
+            SpawnCrips(brownCripPrefab, brownRightTopSideSpawnPoints, rightTop);
+
+
             timer = 0f;
         }
     }
 
-    private void SpawnBot()
+    /// <summary>
+    ///     Метод для спавна крипов, в который передаётся префаб крипа определённой команды,
+    ///     точки спавна крипов и их точка назначения.
+    /// </summary>
+    /// <param name="prefab"> Префаб крипа одной из команд. </param>
+    /// <param name="spawnSide"> Точки спавна крипов. </param>
+    /// <param name="impactPoint"> Точка назначения (столкновения с другой командой) крипов. </param>
+    private void SpawnCrips(GameObject prefab, GameObject spawnSide, GameObject impactPoint)
     {
-        // Purple team crips spawner
-        Transform[] purpleSpawnPoints = purpleMidSide.GetComponentsInChildren<Transform>();
+ 
+        // Team crips spawner
+        Transform[] spawnPoints = spawnSide.GetComponentsInChildren<Transform>();
 
-        foreach (Transform spawnPoint in purpleSpawnPoints)
+        foreach (Transform spawnPoint in spawnPoints)
         {
-            Instantiate(purpleCripPrefab, spawnPoint.position, spawnPoint.rotation);
+            GameObject crip = Instantiate(prefab, spawnPoint.position, spawnPoint.rotation);
+            crip.GetComponent<NavMeshAgent>().SetDestination(impactPoint.transform.position);
         }
-
-        // Pink team crips spawner
-        Transform[] pinkSpawnPoints = pinkMidSide.GetComponentsInChildren<Transform>();
-
-        foreach (Transform spawnPoint in pinkSpawnPoints)
-        {
-            Instantiate(pinkCripPrefab, spawnPoint.position, spawnPoint.rotation);
-        }
-
-        // Brown team crips spawner
-        Transform[] brownSpawnPoints = brownMidSide.GetComponentsInChildren<Transform>();
-
-        foreach (Transform spawnPoint in brownSpawnPoints)
-        {
-            Instantiate(brownCripPrefab, spawnPoint.position, spawnPoint.rotation);
-        }
-
-
     }
 }
