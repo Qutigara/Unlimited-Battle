@@ -48,7 +48,12 @@ public class UnitFollowState : StateMachineBehaviour
                 if (distanceFromTarget < attackingDistanse)
                 {
 
-                    agent.SetDestination(animator.transform.position);
+                    
+
+                    if (animator != null)
+                    {
+                        agent.SetDestination(animator.transform.position);
+                    }
 
                     animator.SetBool("isAttack", true);// Move to Attacking State
                     //animator.SetBool("isIdle", true);
@@ -63,7 +68,11 @@ public class UnitFollowState : StateMachineBehaviour
                      
                     //animator.SetBool("isRun", true);
                     animator.SetBool("isAttack", false);
-                    agent.SetDestination(attackController.targetToAttack.position);
+                    if (animator != null)
+                    {
+                        agent.SetDestination(attackController.targetToAttack.position);
+                    }
+                    
                     //animator.transform.LookAt(attackController.targetToAttack);
 
                     Vector3 direction = attackController.targetToAttack.position - animator.transform.position;

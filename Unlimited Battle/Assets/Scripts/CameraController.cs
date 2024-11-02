@@ -43,20 +43,20 @@ public class CameraController : MonoBehaviour
         // Проверка, находится ли курсор на краях экрана
         if (Input.mousePosition.x < Screen.width * 0.01f)
         {
-            transform.position += Vector3.left * edgeScrollSpeed * Time.deltaTime;
+            transform.position += Vector3.back * edgeScrollSpeed * Time.deltaTime;
         }
         else if (Input.mousePosition.x > Screen.width * 1)
         {
-            transform.position += Vector3.right * edgeScrollSpeed * Time.deltaTime;
+            transform.position += Vector3.forward * edgeScrollSpeed * Time.deltaTime;
         }
 
         if (Input.mousePosition.y < Screen.height * 0.01f)
         {
-            transform.position += Vector3.back * edgeScrollSpeed * Time.deltaTime;
+            transform.position += Vector3.right * edgeScrollSpeed * Time.deltaTime;
         }
         else if (Input.mousePosition.y > Screen.height * 1)
         {
-            transform.position += Vector3.forward * edgeScrollSpeed * Time.deltaTime;
+            transform.position += Vector3.left * edgeScrollSpeed * Time.deltaTime;
         }
 
 
